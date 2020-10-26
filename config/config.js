@@ -5,7 +5,7 @@ module.exports = {
   extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.styl'],
   alias:{
     '@': paths.src,
-    'img': paths.images,
-    'style': paths.styles,
+    '@img': paths.images,
+    '@style': paths.styles,
   },
 }
