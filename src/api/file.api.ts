@@ -9,7 +9,7 @@ AV.init({
 
 export async function uploadFile(fileRaw: File, name: string, onprogress: (event:{percent: number}) => void): Promise<string>{
   const file = new AV.File(name, fileRaw)
-  const f = await file.save({keepFileName: true, onprogress})
+  const f = await file.save({keepFileName: false, onprogress})
   return f.url()
 }
 

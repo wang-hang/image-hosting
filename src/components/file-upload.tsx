@@ -2,8 +2,10 @@ import * as React from 'react'
 import { Upload } from 'antd'
 import { InboxOutlined } from '@ant-design/icons';
 import { DraggerProps } from 'antd/lib/upload';
+import { clipboard } from 'electron'
 
 import { uploadFile } from '@api/file.api'
+import $msg from '@/utils/message-helper'
 
 
 const { useState } = React
@@ -24,6 +26,8 @@ const FileUpload = (props) => {
       })
       setUrl(url)
       onSuccess({url}, file)
+      clipboard.writeText(url)
+      $msg.success('图片链接已经复制到剪贴板啦~~~')
     }
 
 
