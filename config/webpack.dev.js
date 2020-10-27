@@ -8,7 +8,7 @@ const baseConfig = require('./webpack.base')
 
 const devConfig = {
   mode: 'development',
-  entry: ['webpack-hot-middleware/client',paths.entry ],
+  entry: ['webpack-hot-middleware/client?quiet=true',paths.entry ],
   output:{
     filename: '[name].js'
   },
