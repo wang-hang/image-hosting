@@ -8,5 +8,7 @@ module.exports = {
     '@img': paths.images,
     '@style': paths.styles,
     '@components': paths.components,
+    '@api': paths.api,
+    '@utils': paths.utils,
   },
 }

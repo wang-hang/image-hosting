@@ -3,26 +3,27 @@ import { Upload } from 'antd'
 import { InboxOutlined } from '@ant-design/icons';
 import { DraggerProps } from 'antd/lib/upload';
 
+import { uploadFile } from '@api/file.api'
+
 
 const { useState } = React
 const { Dragger } = Upload
 
 const FileUpload = (props) => {
-  const [fileList, setFileList] = useState([])
+  const [url, setUrl] = useState('')
 
   const options: DraggerProps = {
     name: 'file',
     multiple: true,
-    action: '',
-    onChange: info => {
-      console.log(info)
-      const { fileList } = info
-      setFileList(fileList)
-    },
     beforeUpload: () => true,
-    customRequest: (params) => {
-      const { file, filename } = params
-      console.log(fileList)
+    customRequest: async (params) => {
+      const { file, onProgress, onSuccess } = params
+      console.log(params)
+      const url = await uploadFile(file, file.name, ({percent}) => {
+        onProgress({percent}, file)
+      })
+      setUrl(url)
+      onSuccess({url}, file)
     }
 
 

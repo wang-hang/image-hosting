@@ -15,4 +15,6 @@ module.exports = {
   publicPath: resolve('/'),
   outputFileName: env === 'production' ? '[name][hash:6].js': '[name].js',
   components: resolve('src/components'),
+  api: resolve('src/api'),
+  utils: resolve('src/utils'),
 }
