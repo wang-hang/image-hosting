@@ -7,5 +7,6 @@ module.exports = {
     '@': paths.src,
     '@img': paths.images,
     '@style': paths.styles,
+    '@components': paths.components,
   },
 }

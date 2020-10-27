@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import * as path from 'path'
 
 import App from './App'
 import '@style/index.less'

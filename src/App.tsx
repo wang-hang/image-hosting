@@ -1,6 +1,7 @@
 import * as React from 'react'
 import c from 'classnames'
 import { Button } from 'antd'
+import FileUpload from '@components/file-upload'
 
 import '@style/app.less'
 
@@ -11,7 +12,7 @@ const App = (props: any) => {
     return (
         <div className={c('app')} id="app">
             <h1 className="title">Image Hosting</h1>
-            <Button type="primary">Button</Button>
+            <FileUpload></FileUpload>
         </div>
     )
 }

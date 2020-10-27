@@ -10,6 +10,7 @@ const paths = require('./paths')
 const config = require('./config')
 
 module.exports = {
+  target: 'electron-renderer',
   output:{
     filename: paths.outputFileName,
     publicPath: paths.publicPath,

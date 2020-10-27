@@ -1,6 +1,7 @@
 const path = require('path')
 const config = require('./config')
 
+const env = process.NODE_ENV
 const resolve = (value) => path.resolve(__dirname, '../', value)
 
 module.exports = {
@@ -12,5 +13,6 @@ module.exports = {
   images: resolve('src/img'),
   outputDir: resolve('dist'),
   publicPath: resolve('/'),
-  outputFileName: '[name][hash:6].js',
+  outputFileName: env === 'production' ? '[name][hash:6].js': '[name].js',
+  components: resolve('src/components'),
 }

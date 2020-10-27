@@ -5,6 +5,13 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "target": "ES6",
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"] ,
+      "@style/*": ["src/css/*"],
+      "@components/*": ["src/components/*"],
+      "@img/*": ["src/img/*"]
+    }
   }
 }
