@@ -2,7 +2,7 @@
   "name": "react-typescript-template",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "dev:react": "cross-env NODE_ENV=development node config/build.js",
     "dev:electron": "cross-env NODE_ENV=development electron .",
