@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Upload } from 'antd'
 import { InboxOutlined } from '@ant-design/icons';
 import { clipboard } from 'electron'
+import { CopyOutlined } from '@ant-design/icons'
 
 // Types
 import { DraggerProps } from 'antd/lib/upload/Dragger';
@@ -12,8 +13,10 @@ import $msg from '@/utils/message-helper'
 import FileListItem from '@components/file-list-item'
 import readFileToBase64 from '@utils/read-img-to-base64';
 
+import '@style/file-upload.less'
 
-const { useState } = React
+
+const { useState, useEffect } = React
 const { Dragger } = Upload
 const Fragment = React.Fragment
 interface File {
@@ -26,17 +29,24 @@ interface File {
 
 
 const imgUrlMap: {[uid:string]: string} = {}
-const FileUpload = (props) => {
+const FileUpload = () => {
   const [fileList, setFileList] = useState<File[]>([])
 
   const options: DraggerProps = {
     name: 'file',
     multiple: true,
     listType: 'picture-card',
-    showUploadList: false,
+    showUploadList: {
+      showRemoveIcon: false,
+      showPreviewIcon: false,
+      showDownloadIcon: true,
+      downloadIcon: (f) => {
+        return (<CopyOutlined style={{fontSize: 20, color: "#FFF"}} onClick={() => handleCopy(f.uid)} />)
+      }
+    },
     beforeUpload: () => true,
     onChange : async (info ) => {
-      const { name, percent, status, uid, response } = info.file
+      const { name, percent, status, uid } = info.file
       const base64Url = await readFileToBase64(info.file.originFileObj)
       const index = fileList.findIndex(f => f.name === name)
       const newFile = {name, localUrl: base64Url, percent, status, uid }
@@ -45,7 +55,7 @@ const FileUpload = (props) => {
       }else {
         fileList.push(newFile)
       }
-      setFileList(fileList)
+      setFileList([...fileList])
     },
     customRequest: async (params) => {
       const { file, onProgress, onSuccess } = params
@@ -66,15 +76,14 @@ const FileUpload = (props) => {
     const url = imgUrlMap[id]
     copyUrl(url)
   }
-const fileListDom = (
+  const fileListDom = (
       <div className="file-list">
         {
           fileList.map(f => {
             return <FileListItem key={f.uid} id={f.uid} name={f.name} url={f.localUrl} onCopy={handleCopy}  />
           })
         }
-      </div>
-    )
+      </div>)
 
   return (
     <Fragment>
@@ -82,7 +91,7 @@ const fileListDom = (
         <p><InboxOutlined /></p>
         <p>请添加图片:</p>
       </Dragger>
-      {fileListDom}
+      {/* {fileListDom} */}
     </Fragment>
   )
 }

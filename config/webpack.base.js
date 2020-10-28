@@ -11,6 +11,7 @@ const config = require('./config')
 
 module.exports = {
   target: 'electron-renderer',
+  // target: 'web',
   output:{
     filename: paths.outputFileName,
     publicPath: paths.publicPath,
