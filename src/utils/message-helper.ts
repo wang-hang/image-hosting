@@ -11,7 +11,7 @@ interface MSG {
 
 const $msg:MSG = {}
 
-const DEFAULT_DURATION = 3
+const DEFAULT_DURATION = 1
 
 const msgTypes = ['success', 'info', 'error', 'warning']
 msgTypes.forEach(name => {
